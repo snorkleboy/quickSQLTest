@@ -10,10 +10,13 @@ namespace ConsoleApp1
     {
         private Action toTest;
         private int timesToTest;
-        public TimeSpan averageTime;
-        public TimeSpan totalTime;
+        
         private int timesRan = 0;
         private string name;
+        
+        public TimeSpan averageTime;
+        public TimeSpan totalTime;
+
         public Tester(Action toTest, int timesToTest, string name)
         {
             this.toTest = toTest;
@@ -39,7 +42,7 @@ namespace ConsoleApp1
         {
             Stopwatch s = Stopwatch.StartNew();
             toTest();
-             s.Stop();
+            s.Stop();
             return s.Elapsed;
         }
 
