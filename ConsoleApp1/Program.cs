@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Linq;
 using Npgsql;
 
 namespace ConsoleApp1
@@ -20,6 +21,11 @@ namespace ConsoleApp1
 
             new Tester(() => {foreach(var str in testData){}}, 10000, "inMem Arr Test").test().printResult();
             new Tester(() => {foreach(var str in testData){testList.Add(str+"a");}}, 10000, "inMem Arr Test + instantiate var").test().printResult();
+
+            var selectCmd = "SELECT string FROM arrayastabletest where string = 'string800'";
+            new Tester(()=>sqlRunner.runQueryFull(selectCmd), 10000, "SQL test select where").test().printResult();
+            new Tester(() => { testData.Select((i) => i == "string800");}, 10000, "inMem Arr Test select where").test().printResult();
+
 
         }
     }
