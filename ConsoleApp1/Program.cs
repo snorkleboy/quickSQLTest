@@ -23,7 +23,10 @@ namespace ConsoleApp1
             new Tester(() => {foreach(var str in testData){testList.Add(str+"a");}}, 10000, "inMem Arr Test + instantiate var").test().printResult();
 
             var selectCmd = "SELECT string FROM arrayastabletest where string = 'string800'";
+            var selectCmd2 = "SELECT string FROM arrayastableindexedtest where string = 'string800'";
+
             new Tester(()=>sqlRunner.runQueryFull(selectCmd), 10000, "SQL test select where").test().printResult();
+            new Tester(()=>sqlRunner.runQueryFull(selectCmd2), 10000, "SQL test select where with index").test().printResult();
             new Tester(() => { testData.Select((i) => i == "string800");}, 10000, "inMem Arr Test select where").test().printResult();
 
 
